@@ -151,13 +151,14 @@ export default function ChooseTrends(props) {
             '&:hover' : {
               backgroundColor : '#ffffff'
             },
-            position: 'absolute', 
+            position: 'absolute',
+            color : 'blue',
+            fontWeight: '700',
             bottom : '30px',
             height: '50px',
             width: '500px',
             borderRadius : '20px',
             backgroundColor: '#ffffff',
-            color : '#000000'
           }}>ПРОДОЛЖИТЬ</Button>
         {/* </Link> */}
     </Grid>

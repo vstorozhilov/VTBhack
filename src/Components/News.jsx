@@ -16,6 +16,8 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { animated } from 'react-spring';
+import LaunchIcon from '@mui/icons-material/Launch';
+import { useNavigate } from 'react-router-dom';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,10 +32,12 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard(props) {
   const [expanded, setExpanded] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  //console.log(props.role);
 
   return (
     <Card sx={{ width: '100%',
@@ -47,17 +51,24 @@ export default function RecipeReviewCard(props) {
     }}}>
       <CardHeader
         avatar={
-          <>
-            <div style={{
-              color : '#ffffff',
-              backgroundColor: 'red',
-              borderRadius: '10px',
-              width : '50px',
-              height : '25px',
-              paddingLeft : '10px',
-              fontSize : '1rem'
-              }}>{props.role}</div>
-          </>
+          <a href={props.role}>
+          <IconButton sx={{
+            backgroundColor : 'blue'
+          }}>
+            <LaunchIcon/>
+          </IconButton>
+          </a>
+          // <>
+          //   <div style={{
+          //     color : '#ffffff',
+          //     backgroundColor: 'red',
+          //     borderRadius: '10px',
+          //     width : '50px',
+          //     height : '25px',
+          //     paddingLeft : '10px',
+          //     fontSize : '1rem'
+          //     }}>{props.role}</div>
+          // </>
         }
         action={
           <IconButton aria-label="settings">

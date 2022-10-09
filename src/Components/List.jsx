@@ -92,7 +92,13 @@ export default function TransitionGroupExample(props) {
         gap: '16px'}}>
           {transitions((styles, item)=>(
             <animated.div style={{width : '95%', ...styles}}>
-              <RecipeReviewCard role={item.repost_cnt} date={new Date(item.published).toLocaleDateString('ru-RU')} setNews={setNews} item={item} news={news} title={item.title} summary={item.summary}/>
+              <RecipeReviewCard role={item.repost_cnt}
+              date={new Date(item.published).toLocaleDateString('ru-RU')}
+              setNews={setNews}
+              item={item}
+              news={news}
+              title={item.title}
+              summary={item.summary}/>
             </animated.div>
           ))}
           {/* {news.map(()=>(<RecipeReviewCard role='role'/>))} */}

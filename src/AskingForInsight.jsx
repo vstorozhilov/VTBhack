@@ -171,13 +171,15 @@ export default function AskForInsight(props) {
             '&:hover' : {
               backgroundColor : '#ffffff'
             },
+            color : 'blue',
+            fontWeight: '700',
             position: 'absolute', 
             bottom : '30px',
             height: '50px',
             width: '500px',
             borderRadius : '20px',
             backgroundColor: '#ffffff',
-            color : '#000000'
+            //color : '#000000'
           }}>ПРОДОЛЖИТЬ</Button>
         {/* </Link> */}
     </Grid>

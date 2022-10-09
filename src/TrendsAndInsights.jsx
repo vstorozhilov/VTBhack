@@ -31,12 +31,14 @@ export default function TrendsAndInsights(props) {
   const [insights, setInsights] = useState([]);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  // const [sources, setSources] = useState(['1', '2', '3']);
+  const [extsources, setextSources] = useState([]);
 
   async function getInsights() {
     let response = await fetch('http://82.146.37.120:8080/documents?insight=True');
     let JSresponse = await response.json();
+    setextSources(Array.from((new Set(JSresponse.map(item=>(item.link.split('/')[2])))).values()));
     setInsights(JSresponse.map(item=>({title : item.title,
+      link : item.link,
       published : item.published,
       summary : item.ds_insight.insight,
       repost_cnt : item.repost_cnt})));
@@ -59,7 +61,7 @@ export default function TrendsAndInsights(props) {
   });
 
   const SampleDialog = (props) => {
-    const [sources, setSources] = useState(['1', '2', '3']);
+    const [sources, setSources] = useState(extsources);
 
     const sourcesTransitions = useTransition(
       sources,
@@ -90,7 +92,7 @@ export default function TrendsAndInsights(props) {
       }}>
         <div style={{
           width : '400px',
-          height: '535px',
+          height: '500px',
           overflowY : 'scroll',
           backgroundColor : 'white'
         }}>
@@ -105,7 +107,8 @@ export default function TrendsAndInsights(props) {
           paddingTop : '10px'
           }}>
             {sourcesTransitions((styles, item)=>(
-              <animated.div style={{width : '90%',
+              <animated.div style={{
+              width : '90%',
               height : '40px',
               display : 'flex',
               justifyContent: 'center',
@@ -138,6 +141,7 @@ export default function TrendsAndInsights(props) {
         </Grid>
         </div>
         <div style={{backgroundColor : 'white',
+        marginTop : '30px',
         color : 'white',
         display : 'flex',
         justifyContent : 'center'}}>
@@ -221,7 +225,7 @@ export default function TrendsAndInsights(props) {
         sx={{width : '100%'}}>
           {insightsTransitions((styles, item)=>(
             <animated.div style={{width: '90%', display: 'flex', justifyContent : 'center', ...styles}}>
-              <RecipeReviewCard role={item.repost_cnt} date={new Date(item.published).toLocaleDateString('ru-RU')} setNews={setInsights} item={item} news={insights} title={item.title} summary={item.summary}/>
+              <RecipeReviewCard role={item.link} date={new Date(item.published).toLocaleDateString('ru-RU')} setNews={setInsights} item={item} news={insights} title={item.title} summary={item.summary}/>
             </animated.div>))}
         </Grid>
       </Grid>
