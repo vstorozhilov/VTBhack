@@ -57,13 +57,13 @@ export default function ChooseTrends(props) {
     width : '100%',
     //backgroundColor: '#000000'
   }}>
-    <Grid item sx={{
+    {/* <Grid item sx={{
       color : 'blue',
       fontWeight: '800',
       fontSize : '2rem'
     }}>
       И ЕЩЁ КОЕ-ЧТО
-    </Grid>
+    </Grid> */}
     <Grid container
     position='relative'
     gap={3}
@@ -80,7 +80,7 @@ export default function ChooseTrends(props) {
       paddingBottom: '80px'
     }}>
       <Grid item sx={{paddingTop : '40px', fontSize : '1rem'}}>
-        Подскажите, что было бы не так интересно для Вас?
+        Удалите неинтересные сюжеты
       </Grid>
       {/* <Grid item>
         Удалите не интересующие Вас тренды
@@ -146,7 +146,7 @@ export default function ChooseTrends(props) {
       </Grid>
         {/* <Link to='/news'> */}
           <Button
-          onClick={()=>{navigate('/main')}}
+          onClick={()=>{navigate('/insights')}}
           sx={{
             '&:hover' : {
               backgroundColor : '#ffffff'

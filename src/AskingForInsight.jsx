@@ -36,14 +36,14 @@ export default function AskForInsight(props) {
     width : '100%',
     //backgroundColor: '#000000'
   }}>
-    <Grid item sx={{
+    {/* <Grid item sx={{
       color : '#000000',
       fontWeight: '800',
       fontSize : '2rem',
       color : 'blue'
     }}>
       ПРЕЖДЕ ЧЕМ МЫ ПОКАЖЕМ ВАМ САМЫЕ СВЕЖИЕ НОВОСТИ
-    </Grid>
+    </Grid> */}
     <Grid container
     position='relative'
     gap={3}
@@ -166,7 +166,7 @@ export default function AskForInsight(props) {
       </Grid>
         {/* <Link to='/news'> */}
           <Button
-          onClick={()=>{navigate('/news')}}
+          onClick={()=>{navigate('/main')}}
           sx={{
             '&:hover' : {
               backgroundColor : '#ffffff'

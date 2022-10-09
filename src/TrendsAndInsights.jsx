@@ -40,8 +40,18 @@ export default function TrendsAndInsights(props) {
     setIsLoading(true);
     let response = await fetch('http://82.146.37.120:8080/documents?insight=True');
     let JSresponse = await response.json();
-    setextSources(Array.from((new Set(JSresponse.map(item=>(item.link.split('/')[2])))).values()));
-    setInsights(JSresponse.map(item=>({title : item.title,
+    let result = [];
+
+    for (let x = 0; x < JSresponse.length; x++) {
+        if (x) {
+            if (JSresponse[x].title != JSresponse[x-1].title) {
+                result.push(JSresponse[x]);
+            }
+        }
+    }
+    setextSources(Array.from((new Set(result.map(item=>(item.link.split('/')[2])))).values()));
+
+    setInsights(result.map(item=>({title : item.title,
       link : item.link,
       published : item.published,
       summary : item.ds_insight.insight,
