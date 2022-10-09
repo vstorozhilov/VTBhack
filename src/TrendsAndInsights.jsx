@@ -18,6 +18,7 @@ import DialogContent from "@mui/material/DialogContent";
 import Delete from "@mui/icons-material/Delete";
 import CloseIcon from '@mui/icons-material/Close';
 import RecipeReviewCard from "./Components/News";
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 export default function TrendsAndInsights(props) {
@@ -33,7 +34,10 @@ export default function TrendsAndInsights(props) {
   const [open, setOpen] = useState(false);
   const [extsources, setextSources] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   async function getInsights() {
+    setIsLoading(true);
     let response = await fetch('http://82.146.37.120:8080/documents?insight=True');
     let JSresponse = await response.json();
     setextSources(Array.from((new Set(JSresponse.map(item=>(item.link.split('/')[2])))).values()));
@@ -42,6 +46,7 @@ export default function TrendsAndInsights(props) {
       published : item.published,
       summary : item.ds_insight.insight,
       repost_cnt : item.repost_cnt})));
+      setIsLoading(false);
   }
 
   const transitions = useTransition(
@@ -223,7 +228,7 @@ export default function TrendsAndInsights(props) {
         alignItems='center'
         gap="10px"
         sx={{width : '100%'}}>
-          {insightsTransitions((styles, item)=>(
+          {isLoading ? <div style={{marginTop : '100px'}}><CircularProgress thickness={2.1} size={300} sx={{color : 'white'}}/></div> : insightsTransitions((styles, item)=>(
             <animated.div style={{width: '90%', display: 'flex', justifyContent : 'center', ...styles}}>
               <RecipeReviewCard role={item.link} date={new Date(item.published).toLocaleDateString('ru-RU')} setNews={setInsights} item={item} news={insights} title={item.title} summary={item.summary}/>
             </animated.div>))}
