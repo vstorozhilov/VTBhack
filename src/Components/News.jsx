@@ -38,7 +38,7 @@ export default function RecipeReviewCard(props) {
   return (
     <Card sx={{ width: '100%',
     borderRadius : '15px',
-    backgroundColor : '#000000',
+    backgroundColor : '#2b04ae',
     '& .MuiTypography-root' : {
       color : '#ffffff'
     },

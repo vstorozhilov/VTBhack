@@ -37,9 +37,10 @@ export default function AskForInsight(props) {
     //backgroundColor: '#000000'
   }}>
     <Grid item sx={{
-      color : '#ffffff',
+      color : '#000000',
       fontWeight: '800',
-      fontSize : '2rem'
+      fontSize : '2rem',
+      color : 'blue'
     }}>
       ПРЕЖДЕ ЧЕМ МЫ ПОКАЖЕМ ВАМ САМЫЕ СВЕЖИЕ НОВОСТИ
     </Grid>
@@ -53,7 +54,7 @@ export default function AskForInsight(props) {
     sx={{
       width : '700px',
       minHeight : '500px',
-      backgroundColor : '#181a1f',
+      backgroundColor : '#1c56e9a6',
       borderRadius: '20px',
       color : '#ffffff',
       paddingBottom: '80px'

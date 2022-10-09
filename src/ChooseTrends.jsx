@@ -25,14 +25,18 @@ export default function ChooseTrends(props) {
     // console.log(lol);
   }
 
-  const [items, setItems] = useState(['trend1', 'trend2', 'trend3', 'trend4', 'trend5', 'trend6']);
+  const [items, setItems] = useState(['Мобилизованными гражданами право',
+  'налоговики вы исправите',
+  'мобилизации бухгалтерскую налоговую',
+  'международные перевозки грузов',
+  'импортировать товары какие']);
   const navigate = useNavigate();
 
-  const transitions = useTransition(items, {
+  const transitions = useTransition(props.trends, {
     from : {opacity : 0, transform: 'translateX(100%)'},
     enter: {opacity : 1, transform: 'translateX(0%)'},
     //leave: {opacity : 0},
-    keys : item=>items.indexOf(item),
+    keys : item=>props.trends.indexOf(item),
     delay : (key)=>(150 + key * 50),
     config : {duration : 200}
   });
@@ -54,7 +58,7 @@ export default function ChooseTrends(props) {
     //backgroundColor: '#000000'
   }}>
     <Grid item sx={{
-      color : '#ffffff',
+      color : 'blue',
       fontWeight: '800',
       fontSize : '2rem'
     }}>
@@ -70,7 +74,7 @@ export default function ChooseTrends(props) {
     sx={{
       width : '700px',
       minHeight : '500px',
-      backgroundColor : '#181a1f',
+      backgroundColor : '#1c56e9a6',
       borderRadius: '20px',
       color : '#ffffff',
       paddingBottom: '80px'
@@ -97,7 +101,7 @@ export default function ChooseTrends(props) {
             }}
               secondaryAction={
                 <IconButton
-                onClick={(e)=>{setItems((prev)=>{
+                onClick={(e)=>{props.setTrends((prev)=>{
                   console.log('clicked');
                   let newarr = [...prev];
                   newarr.splice(newarr.indexOf(item), 1);

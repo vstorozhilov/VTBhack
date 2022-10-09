@@ -23,7 +23,11 @@ import RecipeReviewCard from "./Components/News";
 export default function TrendsAndInsights(props) {
 
 
-  const [trends, setTrends] = useState(['trend1', 'trend2', 'trend3', 'trend4', 'trend5']);
+  const [trends, setTrends] = useState(['Мобилизованными гражданами право',
+  'налоговики вы исправите',
+  'мобилизации бухгалтерскую налоговую',
+  'международные перевозки грузов',
+  'импортировать товары какие']);
   const [insights, setInsights] = useState([]);
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -34,25 +38,16 @@ export default function TrendsAndInsights(props) {
     let JSresponse = await response.json();
     setInsights(JSresponse.map(item=>({title : item.title,
       published : item.published,
-      summary : item.summary,
+      summary : item.ds_insight.insight,
       repost_cnt : item.repost_cnt})));
   }
 
-  // const sourcesTransitions = useTransition(
-  //   sources,
-  // {
-  //   from : {opacity : 0, transform : 'translateY(100%)'},
-  //   enter : {opacity : 1, transform : 'translateY(0%)'},
-  //   keys: (item)=>(sources.indexOf(item)),
-  //   delay : (key)=>(1200 + 100 * key)
-  // });
-
   const transitions = useTransition(
-    trends,
+    props.value,
   {
     from : {opacity : 0, transform : 'translateY(100%)'},
     enter : {opacity : 1, transform : 'translateY(0%)'},
-    keys: (item)=>(trends.indexOf(item)),
+    keys: (item)=>(props.value.indexOf(item)),
     delay : (key)=>(200 + 50 * key)
   });
 
@@ -77,7 +72,7 @@ export default function TrendsAndInsights(props) {
 
     return <Dialog open={props.open}>
         <DialogTitle sx={{
-          backgroundColor : 'black',
+          backgroundColor : 'blue',
           color : '#ffffff',
           display : 'flex',
           justifyContent : 'space-between'
@@ -89,7 +84,7 @@ export default function TrendsAndInsights(props) {
           </IconButton>
         </DialogTitle>
       <DialogContent sx={{
-        backgroundColor : 'black',
+        backgroundColor : 'white',
         padding : '0',
         overflowY : 'hidden'
       }}>
@@ -97,7 +92,7 @@ export default function TrendsAndInsights(props) {
           width : '400px',
           height: '535px',
           overflowY : 'scroll',
-          backgroundColor : '#181a1f'
+          backgroundColor : 'white'
         }}>
         <Grid container
         direction='column'
@@ -142,7 +137,7 @@ export default function TrendsAndInsights(props) {
             ))}
         </Grid>
         </div>
-        <div style={{backgroundColor : '#181a1f',
+        <div style={{backgroundColor : 'white',
         color : 'white',
         display : 'flex',
         justifyContent : 'center'}}>
@@ -150,7 +145,7 @@ export default function TrendsAndInsights(props) {
           borderRadius : '10px',
           marginBottom : '10px'}}>Добавить новый источник</Button>
         </div>
-        <div style={{backgroundColor : '#181a1f',
+        <div style={{backgroundColor : 'white',
         color : 'white',
         display : 'flex',
         marginBottom : '10px',
@@ -174,7 +169,7 @@ export default function TrendsAndInsights(props) {
     <>
     <SampleDialog open={open}/>
     <Box sx={{ flexGrow: 1}}>
-      <AppBar position="static" sx={{backgroundColor : 'black'}}>
+      <AppBar position="static" sx={{backgroundColor : 'blue'}}>
         <Toolbar>
           <IconButton
             size="large"
@@ -206,7 +201,7 @@ export default function TrendsAndInsights(props) {
       <Grid item sx={{
         width:'40%',
         height: '80%',
-        backgroundColor : '#181a1f',
+        backgroundColor : '#1c56e9a6',
         borderRadius: '30px',
         overflowY : 'scroll'
       }}>
@@ -233,7 +228,7 @@ export default function TrendsAndInsights(props) {
       <Grid item sx={{
         width:'40%',
         height: '80%',
-        backgroundColor : '#181a1f',
+        backgroundColor : '#1c56e9a6',
         borderRadius: '30px',
         overflowY : 'scroll'
       }}>
@@ -269,7 +264,8 @@ export default function TrendsAndInsights(props) {
               justifyContent='space-between'
               alignItems='center'
               sx={{
-                backgroundColor : 'blue',
+                //background: 'linear-gradient(to right, #2b04ae, #2b04ae)',
+                backgroundColor : '#2b04ae',
                 width : '90%',
                 height : '40px',
                 borderRadius: '10px'
@@ -281,7 +277,7 @@ export default function TrendsAndInsights(props) {
                   {item}
                 </div>
                 <IconButton onClick={(e)=>{
-                setTrends((prev)=>{
+                props.setValue((prev)=>{
                   let newArr = [...prev];
                   newArr.splice(newArr.indexOf(item), 1);
                   return newArr;
